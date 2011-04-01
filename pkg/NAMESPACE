@@ -1,0 +1,12 @@
+
+import(grid, graph, Rgraphviz, gridSVG)
+
+export(gridTree)
+export(addTooltips)
+
+# 'grid' methods
+S3method("drawDetails", "edgegrob")
+
+# 'gridSVG' methods
+S3method("primToDev", "edgegrob")
+
