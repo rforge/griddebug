@@ -34,6 +34,8 @@ function showTooltip(evt, label) {
   var topg = document.getElementsByTagName("g")[0];
   topg.appendChild(rect);
   topg.appendChild(text);
+  // Width of overall image
+  var width = topg.parentNode.getBBox().width;
 
   // Determine position for tooltip based on location of 
   // element that mouse is over
@@ -54,6 +56,18 @@ function showTooltip(evt, label) {
   rect.setAttribute("height", text.getBBox().height + 5);
   rect.setAttribute("stroke", "black");
   rect.setAttribute("fill", "yellow");
+
+  // If we are too close to the right-hand edge of the image
+  // reposition rect and text to be top-left and right-aligned
+  if (tooltipx + rect.getBBox().width > width) {
+    tooltipx = targetShape.getBBox().x - text.getBBox().width - 10;
+    tooltiplabx = tooltipx + 5;
+    text.setAttribute("transform", 
+                      "translate(" + tooltiplabx + ", " + tooltiplaby + ") " +
+                      "scale(1, -1)");
+
+    rect.setAttribute("x", tooltipx);
+  } 
 }
 
 function hideTooltip() {
