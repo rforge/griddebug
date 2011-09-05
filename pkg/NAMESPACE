@@ -2,7 +2,8 @@
 import(grid, graph, Rgraphviz, gridSVG)
 
 export(gridTree)
-export(addTooltips)
+export(gridTreeTips)
+export(grobBrowser)
 
 # 'grid' methods
 S3method("drawDetails", "edgegrob")

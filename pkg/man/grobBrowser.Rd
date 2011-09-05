@@ -1,17 +1,17 @@
-\name{addTooltips}
-\alias{addTooltips}
+\name{grobBrowser}
+\alias{grobBrowser}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-  Add tooltips to a grid scene graph.
+  Add tooltips to a grid scene.
 %%  ~~function to do ... ~~
 }
 \description{
-  Produces an SVG version of a scene graph with tooltips
-  that show node labels when the mouse hovers over a graph node.
+  Produces an SVG version of a grid scene with tooltips
+  that show grob labels when the mouse hovers over a grob.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-addTooltips(filename = "Rplots.svg")
+grobBrowser(filename = "Rplots.svg")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,12 +19,6 @@ addTooltips(filename = "Rplots.svg")
     The name of the SVG file that is produced.
 %%     ~~Describe \code{filename} here~~
 }
-}
-\details{
-  This function assumes that the current scene contains a grid
-  scene graph, as produced by \code{\link{gridTree}}.
-  Its behaviour is otherwise undefined.
-%%  ~~ If necessary, more details than the description above ~~
 }
 \author{
   Paul Murrell

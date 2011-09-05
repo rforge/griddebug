@@ -1,0 +1,7 @@
+
+Changes from 0.2 to 0.3
+=======================
+
+1.  Renamed addTooltips() to gridTreeTips().
+
+2.  Added grobBrowser() function.

@@ -13,6 +13,9 @@ grid.DLapply <- function(fun, ...) {
     grid:::grid.Call.graphics("L_setDLindex", gridDLindex)
 }
 
+##########################
+# gridTreeTips()
+
 # Add tooltip attributes to a graph node on the DL
 garnishNodes <- function(elt) {
     if (inherits(elt, "gTree")) {
@@ -50,9 +53,38 @@ primToDev.edgegrob <- function(x, dev) {
 }
 
 # User interface
-addTooltips <- function(filename="Rplots.svg") {
+gridTreeTips <- function(filename="Rplots.svg", ..., grid=TRUE) {
+    if (!grid)
+        stop("Can only add tooltips if scene tree is drawn using grid")
     require(gridSVG)
+    gridTree(..., grid=grid)
     grid.DLapply(garnishNodes)
-    grid.script(filename=system.file("js", "tooltip.js", package="gridDebug"))
+    grid.script(filename=system.file("js", "graphtips.js",
+                  package="gridDebug"))
     gridToSVG(filename)
 }
+
+
+##########################
+# grobBrowser()
+
+# Add tooltip attributes to a grob on the DL
+garnishAllGrobs <- function(elt) {
+    if (inherits(elt, "grob")) {
+        garnishGrob(elt,
+                    onmousemove=paste("showTooltip(evt, '",
+                      gsub("\n", " ", elt$name), "')",
+                      sep=""),
+                    onmouseout="hideTooltip()")
+    } else {
+        elt
+    }
+}
+
+grobBrowser <- function(filename="Rplots.svg") {
+    grid.DLapply(garnishAllGrobs)
+    grid.script(filename=system.file("js", "grobtips.js",
+                  package="gridDebug"))
+    gridToSVG(filename)
+}
+
