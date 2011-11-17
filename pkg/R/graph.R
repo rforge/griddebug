@@ -113,6 +113,10 @@ drawCurve <- function(curve, col, lwd, lty) {
 
 drawDetails.edgegrob <- function(x, ...) {
     edge <- x$edge
+    if (!length(edge@lwd))
+        edge@lwd <- 1    
+    if (!length(edge@lty))
+        edge@lty <- "solid"
     # FIXME:  assumes arrow at end of edge
     splines <- splines(edge)
     n <- length(splines)

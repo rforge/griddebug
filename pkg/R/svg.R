@@ -20,6 +20,7 @@ grid.DLapply <- function(fun, ...) {
 garnishNodes <- function(elt) {
     if (inherits(elt, "gTree")) {
         garnishGrob(elt,
+                    "pointer-events"="all",
                     onmouseover=paste("showTooltip(evt, '",
                       gsub("\n", "", elt$children[[2]]$label), "')",
                       sep=""),
@@ -36,6 +37,10 @@ curveToDev <- function(curve, col, lwd, lty, dev) {
 # primToDev method for "edgegrob" grobs
 primToDev.edgegrob <- function(x, dev) {
     edge <- x$edge
+    if (!length(edge@lwd))
+        edge@lwd <- 1    
+    if (!length(edge@lty))
+        edge@lty <- "solid"
     # FIXME:  assumes arrow at end of edge
     splines <- splines(edge)
     n <- length(splines)
