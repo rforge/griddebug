@@ -1,13 +1,11 @@
 
-import(grid, graph, Rgraphviz, gridSVG)
+import(grid, gridGraphviz, gridSVG)
 
 export(gridTree)
 export(gridTreeTips)
 export(grobBrowser)
 
-# 'grid' methods
-S3method("drawDetails", "edgegrob")
-
 # 'gridSVG' methods
+S3method("primToDev", "beziergrob")
 S3method("primToDev", "edgegrob")
 
