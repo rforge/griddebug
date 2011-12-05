@@ -8,6 +8,10 @@ Changes from 0.3 to 0.4-0
 
 3.  Split 'Rgraphviz' graph drawing out into new package 'rgidGraphviz'.
 
+4.  Fixed bug so that popViewport()s in display list are also ignored
+    when drawing graph (just like upViewport()s and downViewport()s).
+
+
 
 Changes from 0.2 to 0.3
 =======================

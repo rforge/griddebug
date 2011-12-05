@@ -1,7 +1,8 @@
 
 getObjectList <- function() {
 	object <- grid.ls(view=TRUE, print=FALSE)
-    	object <- lapply(object, "[", !(object$type == "vpUpListing" |
+    	object <- lapply(object, "[", !(object$type == "vpPopListing" |
+                                        object$type == "vpUpListing" |
                                         object$type == "vpNameListing" |
                                         object$type == "vpNameTreeListing"))
 	object
@@ -190,7 +191,7 @@ makeRaGraph <- function(graph, objs,
 }
 
 
-gridTree <- function(grobNodeAttrs=list(shape="ellipse", fillcolor="black",
+gridTree <- function(grobNodeAttrs=list(shape="circle", fillcolor="black",
                        fontcolor="white"),
                      vpNodeAttrs=list(shape="box", fillcolor="grey90",
                        fontcolor="black"),
