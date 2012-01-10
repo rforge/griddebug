@@ -6,7 +6,7 @@
   the current \pkg{grid} scene.
 }
 \usage{
-gridTree(grobNodeAttrs=list(shape="ellipse", fillcolor="black",
+gridTree(grobNodeAttrs=list(shape="circle", fillcolor="black",
                             fontcolor="white"),
          vpNodeAttrs=list(shape="box", fillcolor="grey90",
                           fontcolor="black"),

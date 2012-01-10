@@ -6,7 +6,7 @@ Changes from 0.3 to 0.4-0
 
 2.  Moved grid.bezier() to 'grid'.
 
-3.  Split 'Rgraphviz' graph drawing out into new package 'rgidGraphviz'.
+3.  Split 'Rgraphviz' graph drawing out into new package 'gridGraphviz'.
 
 4.  Fixed bug so that popViewport()s in display list are also ignored
     when drawing graph (just like upViewport()s and downViewport()s).
