@@ -1,0 +1,11 @@
+Package:      gridDebug
+Version:      0.4-0
+Depends:      R (>= 2.15.0), grid, gridGraphviz, gridSVG
+Suggests:     lattice, ggplot2
+SystemRequirements: graphviz
+Title:        Debugging Grid Graphics
+Author:       Paul Murrell and Velvet Ly.
+Maintainer:   Paul Murrell <p.murrell@auckland.ac.nz>
+Description:  Functions for drawing scene trees representing 
+              scenes that have been drawn using grid graphics.
+License:      GPL (>= 2)
