@@ -1,4 +1,16 @@
 
+Changes from 0.4-0 to 0.5-0
+=======================
+
+1.  Bumped R version dependency to R >= 2.16.0 because 
+    we now rely on 'gridSVG' doing a grid.force() so we
+    no longer have to supply special primToDev() methods
+    for drawing graph edges.
+
+    Also bumped 'gridSVG' dependency to >= 1.1 for good
+    measure.
+
+
 Changes from 0.3 to 0.4-0
 =======================
 

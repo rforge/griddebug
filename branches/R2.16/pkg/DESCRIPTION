@@ -1,6 +1,6 @@
 Package:      gridDebug
-Version:      0.4-0
-Depends:      R (>= 2.15.0), grid, gridGraphviz, gridSVG
+Version:      0.5-0
+Depends:      R (>= 2.16.0), grid, gridGraphviz, gridSVG (>= 1.1)
 Suggests:     lattice, ggplot2
 SystemRequirements: graphviz
 Title:        Debugging Grid Graphics
