@@ -1,4 +1,10 @@
 
+Changes from 0.4-0 to 0.4-1
+=======================
+
+1.  Added 'grobs' and 'viewports' arguments to gridTree().
+
+
 Changes from 0.3 to 0.4-0
 =======================
 

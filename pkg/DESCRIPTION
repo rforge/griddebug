@@ -1,5 +1,5 @@
 Package:      gridDebug
-Version:      0.4-0
+Version:      0.4-1
 Depends:      R (>= 2.15.0), grid, gridGraphviz, gridSVG
 Suggests:     lattice, ggplot2
 SystemRequirements: graphviz

@@ -1,6 +1,6 @@
 
-getObjectList <- function() {
-	object <- grid.ls(view=TRUE, print=FALSE)
+getObjectList <- function(grobs=TRUE, viewports=TRUE) {
+	object <- grid.ls(grobs=grobs, viewports=viewports, print=FALSE)
     	object <- lapply(object, "[", !(object$type == "vpPopListing" |
                                         object$type == "vpUpListing" |
                                         object$type == "vpNameListing" |
@@ -199,9 +199,10 @@ gridTree <- function(grobNodeAttrs=list(shape="circle", fillcolor="black",
                      vp2vpAttrs=list(color="black", lty="solid", lwd=1),
                      grob2vpAttrs=list(color="black", lty="dotted", lwd=1),
                      vp2grobAttrs=list(color="grey", lty="solid", lwd=2),
-                     grid=FALSE) {
+                     grid=FALSE,
+                     grobs=TRUE, viewports=TRUE) {
 
-    objs <- getObjectList()
+    objs <- getObjectList(grobs, viewports)
     objs$nodes <- generateNodeNames(objs)
     objs$edgeList <- generateEdgeList(objs)
     grid.ls.GNEL <- makeGraph(objs$nodes, objs$edgeList, "directed")	
