@@ -14,7 +14,8 @@ gridTree(grobNodeAttrs=list(shape="circle", fillcolor="black",
          vp2vpAttrs=list(color="black", lty="solid", lwd=1),
          grob2vpAttrs=list(color="black", lty="dotted", lwd=1),
          vp2grobAttrs=list(color="grey", lty="solid", lwd=2),
-         grid=FALSE)
+         grid=FALSE,
+         grobs=TRUE, viewports=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -43,6 +44,14 @@ Named list of attribute settings for edges from a grob to a viewport.
 \item{grid}{
   Logical indicating whether to draw the graph using traditional
   graphics or \pkg{grid}.
+}
+\item{grobs}{
+  Logical indicating whether to include nodes in the graph
+  for grobs in the scene.
+}
+\item{viewports}{
+  Logical indicating whether to include nodes in the graph
+  for viewports in the scene.
 }
 }
 \details{

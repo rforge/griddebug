@@ -1,14 +1,20 @@
 
-Changes from 0.4-0 to 0.5-0
+Changes from 0.4-1 to 0.5-0
 =======================
 
-1.  Bumped R version dependency to R >= 2.16.0 because 
+1.  Bumped R version dependency to R >= 3.0.0 because 
     we now rely on 'gridSVG' doing a grid.force() so we
     no longer have to supply special primToDev() methods
     for drawing graph edges.
 
     Also bumped 'gridSVG' dependency to >= 1.1 for good
     measure.
+
+
+Changes from 0.4-0 to 0.4-1
+=======================
+
+1.  Added 'grobs' and 'viewports' arguments to gridTree().
 
 
 Changes from 0.3 to 0.4-0
