@@ -61,8 +61,8 @@ renameVPPaths <- function(path, objs) {
             if (objs$name[i-1] == "ROOT") {
                 path = sub(objs$name[i-1], objs$nodes[i-1], path)
             } else {
-                path = sub(paste(path[i-1], objs$name[i-1], sep="::"),
-                  paste(path[i-1], objs$nodes[i-1], sep="::"), path)
+                path = sub(paste0(path[i-1], "::", objs$name[i-1], "($|::)"),
+                  paste0(path[i-1], "::", objs$nodes[i-1], "\\1"), path)
             }
         }
     }
@@ -108,7 +108,8 @@ makeGraph <- function(nodes, edges, mode) {
 
 makeRaGraph <- function(graph, objs,
                         gattr, vpattr,
-                        g2gattr, vp2vpattr, g2vpattr, vp2gattr) {
+                        g2gattr, vp2vpattr, g2vpattr, vp2gattr,
+                        split) {
 ##########
 #node attributes
 ##########
@@ -123,29 +124,33 @@ makeRaGraph <- function(graph, objs,
         names(nodeAttrs[[i]]) <- objs$nodes
     }
     if (is.null(nodeAttrs$label)) {
-        nodeAttrs$label <- sapply(strsplit(objs$name, "[.-]"),
-                                  function(bits) {
-                                      if (length(bits) == 1)
-                                          bits
-                                      else {
-                                          label <- bits[1]
-                                          length <- nchar(bits[1])
-                                          sep <- "."
-                                          for (i in 2:length(bits)) {
-                                              nc <- nchar(bits[i])
-                                              if (length + nc > 7) {
-                                                  sep <- ".\\\n"
-                                                  length <- nc
-                                              } else {
-                                                  sep="."
-                                                  length <- length + nc
+        if (split) {
+            nodeAttrs$label <- sapply(strsplit(objs$name, "[.-]"),
+                                      function(bits) {
+                                          if (length(bits) == 1)
+                                              bits
+                                          else {
+                                              label <- bits[1]
+                                              length <- nchar(bits[1])
+                                              sep <- "."
+                                              for (i in 2:length(bits)) {
+                                                  nc <- nchar(bits[i])
+                                                  if (length + nc > 7) {
+                                                      sep <- ".\\\n"
+                                                      length <- nc
+                                                  } else {
+                                                      sep="."
+                                                      length <- length + nc
+                                                  }
+                                                  label <- paste(label, bits[i],
+                                                                 sep=sep)
                                               }
-                                              label <- paste(label, bits[i],
-                                                             sep=sep)
+                                              label
                                           }
-                                          label
-                                      }
-                                  })
+                                      })
+        } else {
+            nodeAttrs$label <- objs$name
+        }
         names(nodeAttrs$label) <- objs$nodes
     }
     
@@ -187,7 +192,7 @@ makeRaGraph <- function(graph, objs,
         names(edgeAttrs[[i]]) <- objs$edgeNames
     }
 
-    agopen(graph, name="", nodeAttrs=nodeAttrs, edgeAttrs=edgeAttrs)
+    agopenTrue(graph, name="", nodeAttrs=nodeAttrs, edgeAttrs=edgeAttrs)
 }
 
 
@@ -199,8 +204,8 @@ gridTree <- function(grobNodeAttrs=list(shape="circle", fillcolor="black",
                      vp2vpAttrs=list(color="black", lty="solid", lwd=1),
                      grob2vpAttrs=list(color="black", lty="dotted", lwd=1),
                      vp2grobAttrs=list(color="grey", lty="solid", lwd=2),
-                     grid=FALSE,
-                     grobs=TRUE, viewports=TRUE) {
+                     split=TRUE, grid=TRUE, 
+                     grobs=TRUE, viewports=TRUE, draw=TRUE) {
 
     objs <- getObjectList(grobs, viewports)
     objs$nodes <- generateNodeNames(objs)
@@ -209,11 +214,14 @@ gridTree <- function(grobNodeAttrs=list(shape="circle", fillcolor="black",
     grid.ls.Ragraph <- makeRaGraph(grid.ls.GNEL, objs,
                                    grobNodeAttrs, vpNodeAttrs,
                                    grob2grobAttrs, vp2vpAttrs,
-                                   grob2vpAttrs, vp2grobAttrs)
-    if (grid) {
-        grid.graph(grid.ls.Ragraph, newpage=TRUE)
-    } else {
-        plot(grid.ls.Ragraph)
+                                   grob2vpAttrs, vp2grobAttrs,
+                                   split)
+    if (draw) {
+        if (grid) {
+            grid.graph(grid.ls.Ragraph, newpage=TRUE)
+        } else {
+            plot(grid.ls.Ragraph)
+        }
     }
     invisible(grid.ls.Ragraph)
 }
