@@ -20,7 +20,6 @@ garnishNodes <- function(elt) {
 gridTreeTips <- function(filename="Rplots.svg", ..., grid=TRUE) {
     if (!grid)
         stop("Can only add tooltips if scene tree is drawn using grid")
-    require(gridSVG)
     gridTree(..., grid=grid)
     grid.DLapply(garnishNodes)
     grid.script(filename=system.file("js", "graphtips.js",
