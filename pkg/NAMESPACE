@@ -1,5 +1,6 @@
 
 import(grid, graph, gridGraphviz, gridSVG)
+importFrom("methods", "new")
 
 export(gridTree)
 export(gridTreeTips)
